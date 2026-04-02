@@ -22,24 +22,24 @@ name: Python Unit Tests
 
 on:
   workflow_dispatch: # Allows the workflow to be manually triggered from the GitHub Actions tab
-  pull_request:      # 
-    paths:           # Trigger workflow on pull requests, but
-      - "**.py"      # only if Python files are changed
+  pull_request: #
+    paths: # Trigger workflow on pull requests, but
+      - "**.py" # only if Python files are changed
   push:
-    branches:        # 
-      - main         #
-      - next         # Trigger workflow on pushes to main and next 
-    paths:           # branches, but only if Python files are changed
-      - "**.py"      # 
+    branches: #
+      - main #
+      - next # Trigger workflow on pushes to main and next
+    paths: # branches, but only if Python files are changed
+      - "**.py" #
 
 env:
   python-version: "3.13"
 
 jobs:
   # Job #1: Run Python unit tests
-  # 
-  # This job will run on an Ubuntu runner and execute the Python 
-  # tests by using a custom action located in ./.github/actions/tests/python. 
+  #
+  # This job will run on an Ubuntu runner and execute the Python
+  # tests by using a custom action located in ./.github/actions/tests/python.
   python-unit-tests:
     runs-on: ubuntu-latest # the runner (remote machine) will use Ubuntu OS
     steps:
@@ -63,8 +63,8 @@ jobs:
           codecov-token: "${{ secrets.CODECOV_TOKEN }}"
 
   # Job #2: Notifications (Mini-capstone assignment)
-  # This job will run after the Python unit tests and 
-  # is scaffolded to facilitate sending notifications based 
+  # This job will run after the Python unit tests and
+  # is scaffolded to facilitate sending notifications based
   # on the test results.
   notifications:
     needs: python-unit-tests
