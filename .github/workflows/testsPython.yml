@@ -61,12 +61,11 @@ jobs:
           mysql-database: "${{ secrets.MYSQL_DATABASE }}"
           mysql-charset: "${{ secrets.MYSQL_CHARSET }}"
           codecov-token: "${{ secrets.CODECOV_TOKEN }}"
-
+          
   # Job #2: Notifications (Mini-capstone assignment)
   # This job will run after the Python unit tests and
-  # is scaffolded to facilitate sending notifications based
-  # on the test results.
-    notifications:
+  # send a notification if the Python tests fail.
+  notifications:
     name: Notify on failed Python tests
     needs: python-unit-tests
     if: ${{ always() && needs.python-unit-tests.result == 'failure' }}
